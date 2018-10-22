@@ -1,0 +1,175 @@
+@charset "UTF-8";
+
+#container-main {
+	padding: 0em 2em 0em 2em;
+}
+
+.true {
+	color: green;
+}
+
+.false {
+	color: red;
+}
+
+.query-builder {
+	max-width: 70em;
+}
+
+.btn-separator:after {
+	content: ' ';
+	display: block;
+	float: left;
+	background: #ADADAD;
+	margin: 0 10px;
+	height: 34px;
+	width: 1px;
+}
+
+/* ***** PROPERTIES ***** */
+.no-padding {
+	padding: 0;
+}
+
+.margin05 {
+	margin: 0.5em;
+}
+
+/****** DATATABLE OVERLOADING ***** */
+div.dataTables_wrapper div.dataTables_processing {
+	z-index: 1
+}
+
+/* ***** BOOTSTRAP OVERLOADING ***** */
+.dropdown-menu>li>a:hover, .dropdown-menu>li>a:focus {
+	background-image: none;
+}
+
+.table>tbody>tr, .table>thead>tr {
+	cursor: default;
+}
+
+.table-striped>tbody>tr:nth-of-type(odd) {
+	background-color: #f5f5f5;
+}
+
+.table-hover>tbody>tr:hover {
+	background-color: #e0dede;
+	cursor: pointer;
+}
+
+.table>thead {
+	background-color: #333;
+	color: white;
+}
+
+.panel-default {
+	margin: 1em 0.5em;
+}
+
+.panel-default>.panel-heading {
+	background-color: #d5ddde;
+}
+
+.panel-heading:hover {
+	cursor: pointer;
+}
+
+.fa-exclamation-triangle {
+	color: #dc1d1a;
+}
+
+.marginTop5 {
+	margin-top: 5px;
+}
+
+.marginTop10 {
+	margin-top: 10px;
+}
+
+.validAccess {
+	color: #60ad0e;
+}
+
+.notValidAccess {
+	color: #dc1d1a;
+}
+
+.accessToDeadline {
+	color: orange;
+}
+
+.expiredAccess {
+	color: black;
+}
+
+.supplierAVSAccess {
+	color: grey;
+}
+
+/**
+* CSS radio button slide
+**/
+.switch {
+	position: relative;
+	display: inline-block;
+	width: 60px;
+	height: 34px;
+}
+
+.switch input {
+	display: none;
+}
+
+.slider {
+	position: absolute;
+	cursor: pointer;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	background-color: #ccc;
+	-webkit-transition: .4s;
+	transition: .4s;
+}
+
+.slider:before {
+	position: absolute;
+	content: "";
+	height: 26px;
+	width: 26px;
+	left: 4px;
+	bottom: 4px;
+	background-color: white;
+	-webkit-transition: .4s;
+	transition: .4s;
+}
+
+input:checked+.slider {
+	background-color: #2196F3;
+}
+
+input:focus+.slider {
+	box-shadow: 0 0 1px #2196F3;
+}
+
+input:checked+.slider:before {
+	-webkit-transform: translateX(26px);
+	-ms-transform: translateX(26px);
+	transform: translateX(26px);
+}
+
+/* Rounded sliders */
+.slider.round {
+	border-radius: 34px;
+}
+
+.slider.round:before {
+	border-radius: 50%;
+}
+/**
+* End CSS radio button slide
+**/
+.alert {
+	display: none;
+}

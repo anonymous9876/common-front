@@ -1,0 +1,19 @@
+td.property-path-dateLivAccept {
+	color: green;
+}
+
+td.property-path-dateLivAnnon .not-equals-with-dateLivSouh {
+	color: red;
+}
+
+#datatable-filter {
+	display:none;
+}
+
+/* #btn-export-excel-unique { */
+/* 	display:none; */
+/* } */
+
+/* #global-search { */
+/* 	display:none; */
+/* } */

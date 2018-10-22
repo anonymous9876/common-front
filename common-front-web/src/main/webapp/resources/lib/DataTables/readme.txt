@@ -1,0 +1,1 @@
+l'extension "buttons" est à exclure, car elle est lourde et ne sera jamais utilisée.
