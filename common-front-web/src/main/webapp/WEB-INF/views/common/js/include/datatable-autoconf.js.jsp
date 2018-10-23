@@ -54,4 +54,9 @@ var replaceDataBaseAutoConfColumns = function(columns, prefixColumnsToDelete, co
 		columns.splice($.inArray(firstRemoveElement, columns), 0, columnToAdd);
 	}
 }
+
+var getOrder = function() {
+	var order = JSON.parse(URI(location.href).search(true).order);
+	return $.map(order, function(value, index){return [value.column, value.dir];});
+}
 //end autoConf factorty function

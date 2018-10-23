@@ -49,7 +49,7 @@
 				</c:if>
 			</div>
 
-			<div id="builder-basic"></div>
+			<div id="builder"></div>
 
 			<div>
 				<!-- 				<form id="form"> -->

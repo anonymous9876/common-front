@@ -5,7 +5,7 @@
 <jsp:useBean id="requestUtil" scope="request" class="name.anonymous.common.front.utils.request.RequestUtil"></jsp:useBean>
 
 $(function() {
-	var ajaxUrl = location.href.replace('.html', '.json');
+	var ajaxUrl = new URI(location.href.replace('.html', '.json')).search("");
 
 	<c:import url="/WEB-INF/views/heros/js/include/datatable-renders.js.jsp"></c:import>
 	var initDataTable = function(data, autoConfColumns, autoConfcolumnsByPropertyPath) {
@@ -80,7 +80,7 @@ $(function() {
 				"searching" : true,
 				"dom" : 'rt<"row"<"col-xs-5"i><"col-xs-7"p>>',
 				"iDisplayLength" : maxResult,
-				"order": [[ 0, 'asc' ]],
+				"order": getOrder(),//[[ 0, 'asc' ]]
 				"columns" : autoConfColumns
 			};
 

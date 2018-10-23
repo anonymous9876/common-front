@@ -53,4 +53,12 @@ var getQueryBuilderFilters = function(data, callbackAlterAutoConf){
 		return queryBuilderFilters;
 	}
 }
+
+var getHistoryRules = function() {
+	var queryBuilderString = URI(location.href).search(true).queryBuilder;
+	if (queryBuilderString) {
+		return JSON.parse(queryBuilderString);
+	}
+	return null;
+}
 //end autoConf autoConf querybuilder

@@ -2,11 +2,17 @@
 var addQueryBuilderDataFactory = function(queryBuilderSelector){
 	var queryBuilderJqueryElement = $(queryBuilderSelector);
 	return function (data) {
+		var urlData = {};
 		var queryBuilder = queryBuilderJqueryElement.queryBuilder('getRules');
 		var queryBuilderIsEmpty = queryBuilder == null || queryBuilder.rules.length == 0;
 		if (!queryBuilderIsEmpty) {
 			data.queryBuilder = JSON.stringify(queryBuilder);
+			urlData.queryBuilder = data.queryBuilder;
 		}
+		urlData.order = JSON.stringify(data.order);
+
+		//update url
+		window.history.pushState(null, null, new URI(location.href).query('').query(urlData).toString());
 	}
 };
 var hideTable = function() {

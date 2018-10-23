@@ -51,3 +51,7 @@ $(function(){
 </script>
 <script type="application/javascript"
 	src="<spring:url htmlEscape="true" value="/resources/app/common/js/btn-export-excel.js"/>"></script>
+<script type="application/javascript"
+	src="<spring:url htmlEscape="true" value="/resources/lib/URI/URI.min.js"/>"></script>
+<script type="application/javascript"
+	src="<spring:url htmlEscape="true" value="/resources/lib/URI/jquery.URI.min.js"/>"></script>

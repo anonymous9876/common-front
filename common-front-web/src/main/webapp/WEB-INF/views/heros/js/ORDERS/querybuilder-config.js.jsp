@@ -15,13 +15,15 @@ var queryBuilderInit = function(callback){
 
 	<c:import url="/WEB-INF/views/common/js/include/querybuilder-autoconf.js.jsp"></c:import>
 	var filters = getQueryBuilderFilters(data);//add calback arg for alter filters
+	var rules = getHistoryRules();
 	var queryBuilderConfig = {
 		plugins : [ 'bt-tooltip-errors' ],
 		lang_code : queryBuilderLangCode,
 		allow_empty : true,
-		filters : filters
+		filters : filters,
+		rules : rules
 	};
-	queryBuilderElement.queryBuilder(queryBuilderConfig);
 	callback();
+	queryBuilderElement.queryBuilder(queryBuilderConfig);
 }
 //END querybuilder-config

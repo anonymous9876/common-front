@@ -1,5 +1,5 @@
 //begin pluginfix
-var queryBuilder = $('#builder-basic');
+var queryBuilder = $('#builder');
 
 // Fix for Bootstrap Datepicker
 	queryBuilder.on('afterUpdateRuleValue.queryBuilder', function (e, rule) {

@@ -66,7 +66,7 @@
 				<!-- 					<i class="fas fa-info-circle"></i> Press shift key and click a column to sort multiple columns at the same time -->
 				<!-- 				</p> -->
 			</div>
-			<div id="builder-basic"></div>
+			<div id="builder"></div>
 
 			<div>
 				<table id="paginated-table" class="table table-striped">
