@@ -41,14 +41,7 @@ $(function() {
 			"orderable":false,
 			"searchable":false,
 			"visible":true,
-			"render" : function ( data, type, row, meta ) {
-				var delivryAddress = row.delivryAddress;
-				var text = delivryAddress.adrLibAdr001 + ' ' + delivryAddress.adrLibVil;
-				var container = $('<span></span>');
-				container.text(text);
-				container.attr('title', delivryAddress.adrLibAdr001 + ' ' + delivryAddress.adrLibAdr002 + ' '  + delivryAddress.adrLibAdr003 + ' ' + delivryAddress.adrCodPst + ' ' + delivryAddress.adrLibVil + ' ' + delivryAddress.adrNumPay);
-				return container.get(0).outerHTML;
-			}
+			"render" : formatAddress
 		};
 		replaceDataBaseAutoConfColumns(autoConfColumns, 'numArtFou', columnDescription);
 		replaceDataBaseAutoConfColumns(autoConfColumns, 'delivryAddress.', columnDelivryAddress);

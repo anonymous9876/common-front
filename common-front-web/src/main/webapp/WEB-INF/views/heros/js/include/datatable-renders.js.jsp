@@ -7,7 +7,7 @@
 var formatMissionLink = function(data, type, row, meta) {
 	var a = $('<a/>');
 	a.text(data);
-	var urlWithoutIdMission = '<spring:url javaScriptEscape="true" value="order-{idMission}-detail.html" />';
+	var urlWithoutIdMission = '<spring:url javaScriptEscape="true" value="mission-{idMission}-detail.html" />';
 	var url = urlWithoutIdMission.replace('{idMission}', row.id);
 	a.attr('href', url);
 	return a.get(0).outerHTML;
@@ -52,4 +52,13 @@ var formatBuyer = function ( data, type, row, meta ) {
 	link.text(text);
 	link.attr('href', 'mailto:' + buyer.email);
 	return link.get(0).outerHTML;
+}
+
+var formatAddress = function ( data, type, row, meta ) {
+	var delivryAddress = row.delivryAddress;
+	var text = delivryAddress.adrLibAdr001 + ' ' + delivryAddress.adrLibVil;
+	var container = $('<span></span>');
+	container.text(text);
+	container.attr('title', delivryAddress.adrLibAdr001 + ' ' + delivryAddress.adrLibAdr002 + ' '  + delivryAddress.adrLibAdr003 + ' ' + delivryAddress.adrCodPst + ' ' + delivryAddress.adrLibVil + ' ' + delivryAddress.adrNumPay);
+	return container.get(0).outerHTML;
 }
