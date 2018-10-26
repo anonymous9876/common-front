@@ -105,7 +105,7 @@ public class MissionService {
 	public PaginatedDataBean< MissionTableModel> listOrdersPaginated(String heroSegment,
 			DataTableRequestBean dataTableRequestBean, String commandePar) throws IOException {
 		Class<MissionTableModel> clazz = MissionTableModel.class;// MissionApiModel
-		String jsonString = getPaginated(heroSegment, "order-indirect-headers",
+		String jsonString = getPaginated(heroSegment, "mission-indirect-headers",
 				dataTableRequestBean).getBody();
 		return objectMapper.readValue(jsonString,
 				objectMapper.getTypeFactory().constructParametricType(PaginatedDataBean.class, clazz));
@@ -113,24 +113,24 @@ public class MissionService {
 
 	public MissionTableModel getOrder(String heroSegment, String idMission) throws IOException {
 		Class<MissionTableModel> clazz = MissionTableModel.class;// MissionApiModel
-		String jsonString = get(heroSegment, "order-indirect-headers/" + idMission).getBody();
+		String jsonString = get(heroSegment, "mission-indirect-headers/" + idMission).getBody();
 		return objectMapper.readValue(jsonString, objectMapper.getTypeFactory().constructSimpleType(clazz, null));
 	}
 
 	public void newOrder(String heroSegment, MissionTableModel MissionWebModel) {
 		MissionApiModel MissionApiModel = dozerBeanMapper.map(MissionWebModel, MissionApiModel.class);
-		post(heroSegment, "order-indirect-headers/create", MissionApiModel);
+		post(heroSegment, "mission-indirect-headers/create", MissionApiModel);
 	}
 
 	public void putOrder(MissionTableModel MissionWebModel) {
-		put("order-indirect-headers", MissionWebModel.getId().toString(), MissionWebModel);
+		put("mission-indirect-headers", MissionWebModel.getId().toString(), MissionWebModel);
 	}
 
 	public void patchOrder(MissionTableModel MissionWebModel) {
-		patch("order-indirect-headers", MissionWebModel.getId().toString(), MissionWebModel);
+		patch("mission-indirect-headers", MissionWebModel.getId().toString(), MissionWebModel);
 	}
 
 	public void deleteOrder(String id) {
-		delete("order-indirect-headers", id);
+		delete("mission-indirect-headers", id);
 	}
 }

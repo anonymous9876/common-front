@@ -56,7 +56,11 @@ var replaceDataBaseAutoConfColumns = function(columns, prefixColumnsToDelete, co
 }
 
 var getOrder = function() {
-	var order = JSON.parse(URI(location.href).search(true).order);
+	var orderArg = URI(location.href).search(true).order;
+	if (!orderArg) {
+		return [[0, 'asc']];
+	}
+	var order = JSON.parse(orderArg);
 	return $.map(order, function(value, index){return [value.column, value.dir];});
 }
 //end autoConf factorty function

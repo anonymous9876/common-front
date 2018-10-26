@@ -5333,7 +5333,7 @@
 			sanityWidth = table.outerWidth();
 		}
 	
-		// Hidden header should have zero height, so remove padding and borders. Then
+		// Hidden header should have zero height, so remove padding and bmissions. Then
 		// set the width based on the real headers
 	
 		// Apply all styles in one pass

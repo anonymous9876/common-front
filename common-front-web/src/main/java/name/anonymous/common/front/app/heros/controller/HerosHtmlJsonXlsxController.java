@@ -57,10 +57,10 @@ public class HerosHtmlJsonXlsxController {
 	private PaginatedDataBeanService paginatedDataBeanService;
 
 	@Autowired
-	private MissionService MissionService;
+	private MissionService missionService;
 
 	@Autowired
-	private ProductLineItemService ProductLineItemService;
+	private ProductLineItemService productLineItemService;
 
 	/**
 	 * negative number return all data
@@ -75,18 +75,18 @@ public class HerosHtmlJsonXlsxController {
 
 	@GetMapping({
 		"/",
-		"/orders.html"
+		"/missions.html"
 	})
 	public String listOrders(Model model, Locale locale) {
-		model.addAttribute("page", "ORDERS");
-		return "heros/html/orders.html";
+		model.addAttribute("page", "MISSIONS");
+		return "heros/html/missions.html";
 	}
 
-	@GetMapping("/orders.json")
+	@GetMapping("/missions.json")
 	@ResponseBody
 	public PaginatedDataBean<MissionTableModel> listOrdersPaginated(@Valid DataTableRequestBean dataTableRequestBean,@RequestParam(required = false) String commandePar)
 			throws IOException {
-		PaginatedDataBean<MissionTableModel> paginatedDataBean = MissionService.listOrdersPaginated("1", dataTableRequestBean, commandePar);
+		PaginatedDataBean<MissionTableModel> paginatedDataBean = missionService.listOrdersPaginated("1", dataTableRequestBean, commandePar);
 
 		DataTableFacet dataTableFacet = new DataTableFacet();
 		dataTableFacet.setTable(new DtoDefinition(tableBeanFactory.getOrderTableBean(paginatedDataBean.getData(), null)));
@@ -95,71 +95,66 @@ public class HerosHtmlJsonXlsxController {
 		return paginatedDataBean;
 	}
 
-	@PostMapping("/orders.json")
-	public void newOrder(String heroSegment, MissionTableModel MissionWebModel, HttpServletResponse httpServletResponse)
-			throws IOException {
-		MissionService.newOrder(heroSegment, MissionWebModel);
+	@PostMapping("/missions.json")
+	public void newOrder(String heroSegment, MissionTableModel missionWebModel, HttpServletResponse httpServletResponse) {
+		missionService.newOrder(heroSegment, missionWebModel);
 		httpServletResponse.setStatus(HttpServletResponse.SC_NO_CONTENT);
 	}
 
-	@PutMapping(value = "/orders.json",
+	@PutMapping(value = "/missions.json",
 			consumes = MediaType.APPLICATION_FORM_URLENCODED_VALUE,
 	        produces = MediaType.APPLICATION_JSON_VALUE)
-	public void putOrder(MissionTableModel MissionWebModel, HttpServletResponse httpServletResponse)
-			throws IOException {
-		MissionService.putOrder(MissionWebModel);
+	public void putOrder(MissionTableModel missionWebModel, HttpServletResponse httpServletResponse) {
+		missionService.putOrder(missionWebModel);
 		httpServletResponse.setStatus(HttpServletResponse.SC_NO_CONTENT);
 	}
 
-	@PatchMapping(value = "/orders.json",
+	@PatchMapping(value = "/missions.json",
 			consumes = MediaType.APPLICATION_FORM_URLENCODED_VALUE,
 	        produces = MediaType.APPLICATION_JSON_VALUE)
-	public void patchOrder(MissionTableModel MissionWebModel, HttpServletResponse httpServletResponse)
-			throws IOException {
-		MissionService.patchOrder(MissionWebModel);
+	public void patchOrder(MissionTableModel missionWebModel, HttpServletResponse httpServletResponse) {
+		missionService.patchOrder(missionWebModel);
 		httpServletResponse.setStatus(HttpServletResponse.SC_NO_CONTENT);
 	}
 
-	@DeleteMapping("/orders.json")
-	public void deleteOrder(@RequestBody String id, HttpServletResponse httpServletResponse)
-			throws IOException {
-		MissionService.deleteOrder(id);
+	@DeleteMapping("/missions.json")
+	public void deleteOrder(@RequestBody String id, HttpServletResponse httpServletResponse) {
+		missionService.deleteOrder(id);
 		httpServletResponse.setStatus(HttpServletResponse.SC_NO_CONTENT);
 	}
 
-	@GetMapping("/orders.xlsx")
+	@GetMapping("/missions.xlsx")
 	@ResponseBody
 	public XlsxMonoSheetView listOrdersExcel(Model model, @Valid DataTableRequestBean dataTableRequestBean, @RequestParam(required = false) String commandePar,
 			XlsxMonoSheetView xlsxMonoSheetView) throws IOException {
 		dataTableRequestBean.setLength(MAX_RESULT_XLSX);
 
-		PaginatedDataBean<MissionTableModel> paginatedDataBean = MissionService.listOrdersPaginated("1", dataTableRequestBean, commandePar);
+		PaginatedDataBean<MissionTableModel> paginatedDataBean = missionService.listOrdersPaginated("1", dataTableRequestBean, commandePar);
 
 		SupplierPortalTableBean tableBean = tableBeanFactory.getOrderTableBean(
 				paginatedDataBean.getData(), null);
 
-		model.addAttribute(XlsxMonoSheetView.ModelAttributeName.FILE_NAME, String.format("orders %s", new SimpleDateFormat().format(new Date())));
+		model.addAttribute(XlsxMonoSheetView.ModelAttributeName.FILE_NAME, String.format("missions %s", new SimpleDateFormat().format(new Date())));
 		model.addAttribute(XlsxMonoSheetView.ModelAttributeName.SHEET_BEAN,
-				new ExcelSheetBean("orders", tableBean, LikeHtmlExcelStyle.class));
+				new ExcelSheetBean("missions", tableBean, LikeHtmlExcelStyle.class));
 
 		model.addAttribute(XlsxMonoSheetView.ModelAttributeName.DATA_TABLE_REQUEST_BEAN, dataTableRequestBean);
 		model.addAttribute(XlsxMonoSheetView.ModelAttributeName.PAGINATED_DATA_BEAN, paginatedDataBean);
 		return xlsxMonoSheetView;
 	}
 
-	@GetMapping("/order-{idMission}-detail.html")
+	@GetMapping("/mission-{idMission}-detail.html")
 	public String listProductLineItem(@PathVariable String idMission, Model model, Locale locale) {
-		model.addAttribute("page", "ORDER_DETAIL");
+		model.addAttribute("page", "MISSION_DETAIL");
 		model.addAttribute("idMission", idMission);
-		//model.addAttribute("nomFour", );
-		return "heros/html/order-detail.html";
+		return "heros/html/mission-detail.html";
 	}
 
-	@GetMapping("/order-{idMission}-detail.json")
+	@GetMapping("/mission-{idMission}-detail.json")
 	@ResponseBody
 	public PaginatedDataBean<ProductLineItemWebModel> listOrdersDetailPaginated(@PathVariable String idMission,
 			@Valid DataTableRequestBean dataTableRequestBean) throws IOException {
-		PaginatedDataBean<ProductLineItemWebModel> paginatedDataBean = ProductLineItemService.listProductLineItemsPaginated("1", idMission,dataTableRequestBean);
+		PaginatedDataBean<ProductLineItemWebModel> paginatedDataBean = productLineItemService.listProductLineItemsPaginated("1", idMission,dataTableRequestBean);
 
 		DataTableFacet dataTableFacet = new DataTableFacet();
 		dataTableFacet.setTable(new DtoDefinition(tableBeanFactory.getProductLineItemTableBean(paginatedDataBean.getData(), null)));
@@ -168,21 +163,21 @@ public class HerosHtmlJsonXlsxController {
 		return paginatedDataBean;
 	}
 
-	@GetMapping("/order-{idMission}-detail.xlsx")
+	@GetMapping("/mission-{idMission}-detail.xlsx")
 	@ResponseBody
 	public XlsxMonoSheetView listProductLineItemExcel(@PathVariable String idMission, Model model,
 			@Valid DataTableRequestBean dataTableRequestBean, XlsxMonoSheetView xlsxMonoSheetView) throws IOException {
 		dataTableRequestBean.setLength(MAX_RESULT_XLSX);
 
-		PaginatedDataBean<ProductLineItemWebModel> paginatedDataBean = ProductLineItemService.listProductLineItemsPaginated("1", idMission, dataTableRequestBean);
+		PaginatedDataBean<ProductLineItemWebModel> paginatedDataBean = productLineItemService.listProductLineItemsPaginated("1", idMission, dataTableRequestBean);
 
 		SupplierPortalTableBean tableBean = tableBeanFactory.getProductLineItemTableBean(
 				paginatedDataBean.getData(), null);
 
-		model.addAttribute(XlsxMonoSheetView.ModelAttributeName.FILE_NAME, String.format("order-%s-detail %s",
+		model.addAttribute(XlsxMonoSheetView.ModelAttributeName.FILE_NAME, String.format("mission-%s-detail %s",
 				idMission, new SimpleDateFormat().format(new Date())));
 		model.addAttribute(XlsxMonoSheetView.ModelAttributeName.SHEET_BEAN, new ExcelSheetBean(
-				String.format("order-%s-detail", idMission), tableBean, LikeHtmlExcelStyle.class));
+				String.format("mission-%s-detail", idMission), tableBean, LikeHtmlExcelStyle.class));
 
 		model.addAttribute(XlsxMonoSheetView.ModelAttributeName.DATA_TABLE_REQUEST_BEAN, dataTableRequestBean);
 		model.addAttribute(XlsxMonoSheetView.ModelAttributeName.PAGINATED_DATA_BEAN, paginatedDataBean);

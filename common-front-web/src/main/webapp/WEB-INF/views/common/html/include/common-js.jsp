@@ -9,8 +9,7 @@
 	src="<spring:url htmlEscape="true" value="/resources/lib/jquery/jquery.js"/>"></script>
 <script type="application/javascript"
 	src="<spring:url htmlEscape="true" value="/resources/app/common/js/jquery-ajax-error-handler.js"/>"></script>
-<script type="application/javascript"
-	src="<spring:url htmlEscape="true" value="/resources/app/common/js/jquery-param-fix-for-spring.js"/>"></script>
+<%-- <script type="application/javascript" src="<spring:url htmlEscape="true" value="/resources/app/common/js/jquery-param-fix-for-spring.js"/>"></script> --%>
 <script type="application/javascript"
 	src="<spring:url htmlEscape="true" value="/resources/lib/DataTables/datatables.js"/>"></script>
 <script type="application/javascript"

@@ -10,7 +10,7 @@
 <body>
 	<p>
 		<a
-			href="<spring:url htmlEscape="true" value="http://localhost:8080/HERO/005/heros/orders.html"/>">lien
+			href="<spring:url htmlEscape="true" value="http://localhost:8080/HERO/005/heros/missions.html"/>">lien
 			heros</a>
 	</p>
 

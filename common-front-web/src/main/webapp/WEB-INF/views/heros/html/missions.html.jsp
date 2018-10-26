@@ -230,7 +230,7 @@
 		<script type="application/javascript"
 			src="<spring:url htmlEscape="true" value="${requestUtil.getAppBaseUrl()}/${page}/datatable-config.js"/>"></script>
 		<script type="application/javascript"
-			src="<spring:url htmlEscape="true" value="/resources/app/heros/js/orders.js"/>"></script>
+			src="<spring:url htmlEscape="true" value="/resources/app/heros/js/missions.js"/>"></script>
 		<c:import url="include/footer.jsp"></c:import>
 	</div>
 </body>

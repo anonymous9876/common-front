@@ -78,7 +78,7 @@ public class ProductLineItemService {
 			String idMission, DataTableRequestBean dataTableRequestBean) throws IOException {
 		Class<ProductLineItemApiModel> clazz = ProductLineItemApiModel.class;
 		String jsonString = paginatedDataJsonString(heroSegment,
-				"/order-indirect-headers/" + idMission + "/order-indirect-details", dataTableRequestBean).getBody();
+				"/mission-indirect-headers/" + idMission + "/mission-indirect-details", dataTableRequestBean).getBody();
 		return objectMapper.readValue(jsonString,
 				objectMapper.getTypeFactory().constructParametricType(PaginatedDataBean.class, clazz));
 	}

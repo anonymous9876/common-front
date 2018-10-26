@@ -20,7 +20,7 @@
 		<ul class="dropdown-menu">
 			<li
 				class="tabElement <c:if test="${appIsActive and page eq 'ORDERS'}">activeGlobalTab</c:if>"><a
-				href="<spring:url htmlEscape="true" value="${baseUrl}/orders.html"/>"><spring:message
+				href="<spring:url htmlEscape="true" value="${baseUrl}/missions.html"/>"><spring:message
 						htmlEscape="false" code="heros.TITLE_ORDERS" /></a></li>
 		</ul>
 </ul>
