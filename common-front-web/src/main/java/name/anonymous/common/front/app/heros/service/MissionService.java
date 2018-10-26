@@ -49,7 +49,7 @@ public class MissionService {
 	}
 
 	private String getBaseUrlControllerByhero() {
-		return baseUrl + "/legal-supplier/{hero}/{apiController}";
+		return baseUrl + "/hero/{hero}/{apiController}";
 	}
 
 	private ResponseEntity<String> get(String heroSegment, String apiController) {

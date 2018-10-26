@@ -40,7 +40,7 @@ public class ProductLineItemService {
 
 	private String getBaseUrlController() {
 		// financialReportingBean.getApiBaseUrl()
-		return "http://localhost:8082" + "/api/business-units/{buCode}/legal-supplier/{hero}/{apiController}";
+		return "http://localhost:8082" + "/api/business-units/{buCode}/hero/{hero}/{apiController}";
 	}
 
 	private ResponseEntity<String> paginatedDataJsonString(String heroSegment, String apiController,

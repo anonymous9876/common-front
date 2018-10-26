@@ -42,9 +42,6 @@
 					</div>
 				</div>
 				<div class="row">
-<!-- 					<div class="col-md-3"> -->
-<%-- 						<c:import url="include/legal-supplier.jsp"></c:import> --%>
-<!-- 					</div> -->
 					<div class="id-payment col-md-9">
 						<span> <span class="select-payment-label"><spring:message
 									htmlEscape="true"
