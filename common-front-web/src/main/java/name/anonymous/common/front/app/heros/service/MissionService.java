@@ -38,18 +38,18 @@ public class MissionService {
 	@Autowired
 	private DozerBeanMapper dozerBeanMapper;
 
-	private static final String baseUrl = "http://localhost:8082" + "/api/business-units/{buCode}";
+	private static final String BASE_URL = "http://localhost:8082" + "/api/business-units/{buCode}";
 
 	private String getBaseUrlControllerByBU() {
-		return baseUrl + "/{apiController}";
+		return BASE_URL + "/{apiController}";
 	}
 
 	private String getBaseUrlControllerByBUWithId() {
-		return baseUrl + "/{apiController}/{id}";
+		return BASE_URL + "/{apiController}/{id}";
 	}
 
 	private String getBaseUrlControllerByhero() {
-		return baseUrl + "/hero/{hero}/{apiController}";
+		return BASE_URL + "/heros/{hero}/{apiController}";
 	}
 
 	private ResponseEntity<String> get(String heroSegment, String apiController) {
@@ -117,17 +117,17 @@ public class MissionService {
 		return objectMapper.readValue(jsonString, objectMapper.getTypeFactory().constructSimpleType(clazz, null));
 	}
 
-	public void newOrder(String heroSegment, MissionTableModel MissionWebModel) {
-		MissionApiModel MissionApiModel = dozerBeanMapper.map(MissionWebModel, MissionApiModel.class);
-		post(heroSegment, "mission-indirect-headers/create", MissionApiModel);
+	public void newOrder(String heroSegment, MissionTableModel missionWebModel) {
+		MissionApiModel missionApiModel = dozerBeanMapper.map(missionWebModel, MissionApiModel.class);
+		post(heroSegment, "mission-indirect-headers/create", missionApiModel);
 	}
 
-	public void putOrder(MissionTableModel MissionWebModel) {
-		put("mission-indirect-headers", MissionWebModel.getId().toString(), MissionWebModel);
+	public void putOrder(MissionTableModel missionWebModel) {
+		put("mission-indirect-headers", missionWebModel.getId().toString(), missionWebModel);
 	}
 
-	public void patchOrder(MissionTableModel MissionWebModel) {
-		patch("mission-indirect-headers", MissionWebModel.getId().toString(), MissionWebModel);
+	public void patchOrder(MissionTableModel missionWebModel) {
+		patch("mission-indirect-headers", missionWebModel.getId().toString(), missionWebModel);
 	}
 
 	public void deleteOrder(String id) {
