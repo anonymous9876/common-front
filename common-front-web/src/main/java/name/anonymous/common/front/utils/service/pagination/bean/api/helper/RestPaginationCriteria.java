@@ -1,5 +1,11 @@
 package name.anonymous.common.front.utils.service.pagination.bean.api.helper;
 
+import java.net.URLEncoder;
+import java.nio.charset.StandardCharsets;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map.Entry;
+
 import org.apache.commons.lang.builder.ToStringBuilder;
 
 /**
@@ -40,6 +46,14 @@ public class RestPaginationCriteria {
 	}
 	public void setSortBy(SortBy sortBy) {
 		this.sortBy = sortBy;
+	}
+
+	public List<String> getSortByList() {
+		List<String> sortBys = new ArrayList<>();
+		for (Entry<String, SortOrder> entry : getSortBy().getSortBys().entrySet()) {
+			sortBys.add(new StringBuilder().append(entry.getKey()).append(":").append(entry.getValue().toString()).toString());
+		}
+		return sortBys;
 	}
 
 	@Override

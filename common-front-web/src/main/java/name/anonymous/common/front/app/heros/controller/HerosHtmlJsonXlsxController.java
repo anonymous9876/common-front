@@ -154,7 +154,7 @@ public class HerosHtmlJsonXlsxController {
 	@ResponseBody
 	public PaginatedDataBean<ProductLineItemWebModel> listOrdersDetailPaginated(@PathVariable String idMission,
 			@Valid DataTableRequestBean dataTableRequestBean) throws IOException {
-		PaginatedDataBean<ProductLineItemWebModel> paginatedDataBean = productLineItemService.listProductLineItemsPaginated("1", idMission,dataTableRequestBean);
+		PaginatedDataBean<ProductLineItemWebModel> paginatedDataBean = productLineItemService.listProductLineItemsPaginated(idMission,dataTableRequestBean);//"1",
 
 		DataTableFacet dataTableFacet = new DataTableFacet();
 		dataTableFacet.setTable(new DtoDefinition(tableBeanFactory.getProductLineItemTableBean(paginatedDataBean.getData(), null)));
@@ -169,7 +169,7 @@ public class HerosHtmlJsonXlsxController {
 			@Valid DataTableRequestBean dataTableRequestBean, XlsxMonoSheetView xlsxMonoSheetView) throws IOException {
 		dataTableRequestBean.setLength(MAX_RESULT_XLSX);
 
-		PaginatedDataBean<ProductLineItemWebModel> paginatedDataBean = productLineItemService.listProductLineItemsPaginated("1", idMission, dataTableRequestBean);
+		PaginatedDataBean<ProductLineItemWebModel> paginatedDataBean = productLineItemService.listProductLineItemsPaginated(idMission, dataTableRequestBean);//"1",
 
 		SupplierPortalTableBean tableBean = tableBeanFactory.getProductLineItemTableBean(
 				paginatedDataBean.getData(), null);

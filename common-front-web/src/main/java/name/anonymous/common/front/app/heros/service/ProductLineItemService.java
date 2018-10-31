@@ -40,45 +40,44 @@ public class ProductLineItemService {
 
 	private String getBaseUrlController() {
 		// financialReportingBean.getApiBaseUrl()
-		return "http://localhost:8082" + "/api/business-units/{buCode}/heros/{hero}/{apiController}";
+		return "http://localhost:8082" + "/api/business-units/{buCode}/{apiController}";/// heros/{hero}/
 	}
 
-	private ResponseEntity<String> paginatedDataJsonString(String heroSegment, String apiController,
-			DataTableRequestBean dataTableRequestBean) throws UnsupportedEncodingException {
+	private ResponseEntity<String> paginatedDataJsonString(String apiController,
+			DataTableRequestBean dataTableRequestBean) throws UnsupportedEncodingException {// String hero,
 		UriComponentsBuilder uriComponentsBuilder = UriComponentsBuilder.fromUriString(getBaseUrlController());
 		String buCode = requestUtil.getBu();
 
 		paginatedQueryParamService.setPaginatedQueryParam(dataTableRequestBean, uriComponentsBuilder);
 
-		String restUrl = uriComponentsBuilder.buildAndExpand(buCode, heroSegment, apiController).toUriString();
+		String restUrl = uriComponentsBuilder.buildAndExpand(buCode, apiController).toUriString();// , hero
 		return rt.getForEntity(restUrl, String.class);
 		// new ParameterizedTypeReference<List<Rate>>() {});
 	}
 
-	public PaginatedDataBean<ProductLineItemWebModel> listProductLineItemsPaginated(String heroSegment,
-			String idMission, DataTableRequestBean dataTableRequestBean) throws IOException {
+	public PaginatedDataBean<ProductLineItemWebModel> listProductLineItemsPaginated(
+			String idMission, DataTableRequestBean dataTableRequestBean) throws IOException {// String hero,
 		PaginatedDataBean<ProductLineItemApiModel> listProductLineItemsPaginatedApi = listProductLineItemsPaginatedApi(
-				heroSegment, idMission, dataTableRequestBean);
+				idMission, dataTableRequestBean);// hero,
 		PaginatedDataBean<ProductLineItemWebModel> paginatedDataBean = new PaginatedDataBean<>();
 
 		dozerBeanMapper.map(listProductLineItemsPaginatedApi, paginatedDataBean);
 
 		List<ProductLineItemWebModel> dataWeb = new ArrayList<>();
 		for (ProductLineItemApiModel apiDto : listProductLineItemsPaginatedApi.getData()) {
-			ProductLineItemWebModel ProductLineItemWebModel = dozerBeanMapper.map(apiDto,
+			ProductLineItemWebModel productLineItemWebModel = dozerBeanMapper.map(apiDto,
 					ProductLineItemWebModel.class);
-			dataWeb.add(ProductLineItemWebModel);
+			dataWeb.add(productLineItemWebModel);
 		}
 		paginatedDataBean.setData(dataWeb);
 		return paginatedDataBean;
-
 	}
 
-	public PaginatedDataBean<ProductLineItemApiModel> listProductLineItemsPaginatedApi(String heroSegment,
-			String idMission, DataTableRequestBean dataTableRequestBean) throws IOException {
+	public PaginatedDataBean<ProductLineItemApiModel> listProductLineItemsPaginatedApi(
+			String idMission, DataTableRequestBean dataTableRequestBean) throws IOException {// String heroSegment,
 		Class<ProductLineItemApiModel> clazz = ProductLineItemApiModel.class;
-		String jsonString = paginatedDataJsonString(heroSegment,
-				"/mission-indirect-headers/" + idMission + "/mission-indirect-details", dataTableRequestBean).getBody();
+		String jsonString = paginatedDataJsonString(
+				"/missions/" + idMission + "/product-line-items", dataTableRequestBean).getBody();// heroSegment,
 		return objectMapper.readValue(jsonString,
 				objectMapper.getTypeFactory().constructParametricType(PaginatedDataBean.class, clazz));
 	}

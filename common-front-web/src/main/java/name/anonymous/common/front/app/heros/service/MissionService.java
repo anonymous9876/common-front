@@ -105,7 +105,7 @@ public class MissionService {
 	public PaginatedDataBean< MissionTableModel> listOrdersPaginated(String heroSegment,
 			DataTableRequestBean dataTableRequestBean, String commandePar) throws IOException {
 		Class<MissionTableModel> clazz = MissionTableModel.class;// MissionApiModel
-		String jsonString = getPaginated(heroSegment, "mission-indirect-headers",
+		String jsonString = getPaginated(heroSegment, "missions",
 				dataTableRequestBean).getBody();
 		return objectMapper.readValue(jsonString,
 				objectMapper.getTypeFactory().constructParametricType(PaginatedDataBean.class, clazz));
@@ -113,24 +113,24 @@ public class MissionService {
 
 	public MissionTableModel getOrder(String heroSegment, String idMission) throws IOException {
 		Class<MissionTableModel> clazz = MissionTableModel.class;// MissionApiModel
-		String jsonString = get(heroSegment, "mission-indirect-headers/" + idMission).getBody();
+		String jsonString = get(heroSegment, "missions/" + idMission).getBody();
 		return objectMapper.readValue(jsonString, objectMapper.getTypeFactory().constructSimpleType(clazz, null));
 	}
 
 	public void newOrder(String heroSegment, MissionTableModel missionWebModel) {
 		MissionApiModel missionApiModel = dozerBeanMapper.map(missionWebModel, MissionApiModel.class);
-		post(heroSegment, "mission-indirect-headers/create", missionApiModel);
+		post(heroSegment, "missions", missionApiModel);
 	}
 
 	public void putOrder(MissionTableModel missionWebModel) {
-		put("mission-indirect-headers", missionWebModel.getId().toString(), missionWebModel);
+		put("missions", missionWebModel.getId().toString(), missionWebModel);
 	}
 
 	public void patchOrder(MissionTableModel missionWebModel) {
-		patch("mission-indirect-headers", missionWebModel.getId().toString(), missionWebModel);
+		patch("missions", missionWebModel.getId().toString(), missionWebModel);
 	}
 
 	public void deleteOrder(String id) {
-		delete("mission-indirect-headers", id);
+		delete("missions", id);
 	}
 }

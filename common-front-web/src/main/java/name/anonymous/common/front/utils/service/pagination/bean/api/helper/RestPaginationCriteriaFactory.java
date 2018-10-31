@@ -1,5 +1,9 @@
 package name.anonymous.common.front.utils.service.pagination.bean.api.helper;
 
+import java.io.UnsupportedEncodingException;
+import java.net.URLEncoder;
+import java.nio.charset.StandardCharsets;
+
 import org.springframework.stereotype.Service;
 
 import name.anonymous.common.front.utils.service.pagination.bean.request.DataTableRequestBean;
@@ -45,5 +49,9 @@ public class RestPaginationCriteriaFactory {
 		restPaginationCriteria.setSortBy(sortBy);
 
 		return restPaginationCriteria;
+	}
+
+	public String getFilterJson(DataTableRequestBean dataTableRequestBean) throws UnsupportedEncodingException {
+		return URLEncoder.encode(dataTableRequestBean.getQueryBuilder(), StandardCharsets.UTF_8.toString());
 	}
 }

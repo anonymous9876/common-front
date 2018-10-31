@@ -10,5 +10,6 @@
 
 	<modules>
 		<module>common-front-web</module>
+		<module>heros-api-client</module>
 	</modules>
 </project>

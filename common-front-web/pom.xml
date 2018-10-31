@@ -81,6 +81,12 @@
 
 		<!-- SERVICE -->
 		<dependency>
+			<groupId>io.swagger</groupId>
+			<artifactId>swagger-java-client</artifactId>
+			<version>2.2.2</version>
+		</dependency>
+
+		<dependency>
 			<groupId>org.apache.httpcomponents</groupId>
 			<artifactId>httpclient</artifactId>
 		</dependency>
