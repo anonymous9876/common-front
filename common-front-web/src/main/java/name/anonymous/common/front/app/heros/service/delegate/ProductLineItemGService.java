@@ -6,6 +6,7 @@ import java.util.List;
 
 import org.dozer.DozerBeanMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestClientException;
 
 import io.swagger.client.api.ProductLineItemByMissionControllerApi;
@@ -18,7 +19,8 @@ import name.anonymous.common.front.utils.service.pagination.bean.api.helper.Rest
 import name.anonymous.common.front.utils.service.pagination.bean.request.DataTableRequestBean;
 import name.anonymous.common.front.utils.service.pagination.bean.response.PaginatedDataBean;
 
-public class ProductLineItemService {
+@Service
+public class ProductLineItemGService {
 	@Autowired
 	private DozerBeanMapper dozerBeanMapper;
 

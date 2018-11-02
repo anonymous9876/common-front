@@ -7,7 +7,7 @@ import io.swagger.client.api.MissionControllerApi;
 import io.swagger.client.model.MissionDto;
 
 @Service
-public class MissionService {
+public class MissionGService {
 	private MissionControllerApi apiInstance = new MissionControllerApi();
 
 	public void deleteMissionUsingDELETE(String buCode, String missionId) throws RestClientException {

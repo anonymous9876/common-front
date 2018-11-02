@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import name.anonymous.common.front.app.heros.dto.table.ProductLineItemWebModel;
-import name.anonymous.common.front.app.heros.service.delegate.ProductLineItemService;
+import name.anonymous.common.front.app.heros.service.delegate.ProductLineItemGService;
 import name.anonymous.common.front.utils.service.pagination.bean.request.DataTableRequestBean;
 import name.anonymous.common.front.utils.service.pagination.bean.response.PaginatedDataBean;
 
@@ -17,7 +17,7 @@ import name.anonymous.common.front.utils.service.pagination.bean.response.Pagina
 		"/{userType}/{bu}/heros"})
 public class ProductLineItemController {
 	@Autowired
-	private ProductLineItemService productLineItemService;
+	private ProductLineItemGService productLineItemService;
 
 	@GetMapping("product-line-items")
 	public PaginatedDataBean<ProductLineItemWebModel> listProductLineItemsPaginated(String idMission, DataTableRequestBean dataTableRequestBean)

@@ -11,14 +11,14 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.client.RestClientException;
 
 import io.swagger.client.model.MissionDto;
-import name.anonymous.common.front.app.heros.service.delegate.MissionService;
+import name.anonymous.common.front.app.heros.service.delegate.MissionGService;
 
 @RestController
 @RequestMapping({
 "/{userType}/{buCode}/heros"})
 public class MissionController {
 	@Autowired
-	private MissionService missionService;
+	private MissionGService missionService;
 
 	@DeleteMapping("{missionId}")
 	public void deleteMissionUsingDELETE(@PathVariable String buCode, @PathVariable String missionId) throws RestClientException {
